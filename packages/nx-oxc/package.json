@@ -1,0 +1,114 @@
+{
+  "name": "@nx-oxc/nx",
+  "version": "0.0.1",
+  "description": "Nx plugin for oxlint and oxfmt — fast linting and formatting with the Oxc toolchain.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "keywords": [
+    "nx",
+    "nx-plugin",
+    "oxc",
+    "oxlint",
+    "oxfmt",
+    "linter",
+    "formatter"
+  ],
+  "bugs": {
+    "url": "https://github.com/effinrich/nx-oxc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/effinrich/nx-oxc.git",
+    "directory": "packages/nx-oxc"
+  },
+  "homepage": "https://github.com/effinrich/nx-oxc/tree/master/packages/nx-oxc#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@nx-oxc/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./plugin": {
+      "@nx-oxc/source": "./src/plugins/plugin.ts",
+      "types": "./dist/plugins/plugin.d.ts",
+      "require": "./dist/plugins/plugin.js",
+      "default": "./dist/plugins/plugin.js"
+    },
+    "./oxlint": {
+      "@nx-oxc/source": "./src/plugins/oxlint.ts",
+      "types": "./dist/plugins/oxlint.d.ts",
+      "require": "./dist/plugins/oxlint.js",
+      "default": "./dist/plugins/oxlint.js"
+    },
+    "./oxfmt": {
+      "@nx-oxc/source": "./src/plugins/oxfmt.ts",
+      "types": "./dist/plugins/oxfmt.d.ts",
+      "require": "./dist/plugins/oxfmt.js",
+      "default": "./dist/plugins/oxfmt.js"
+    }
+  },
+  "files": [
+    "dist",
+    "executors.json",
+    "generators.json",
+    "README.md",
+    "LICENSE",
+    "!**/*.tsbuildinfo",
+    "!**/*.spec.js",
+    "!**/*.spec.d.ts"
+  ],
+  "executors": "./executors.json",
+  "generators": "./generators.json",
+  "peerDependencies": {
+    "oxlint": ">=1.0.0",
+    "oxfmt": ">=0.30.0"
+  },
+  "peerDependenciesMeta": {
+    "oxlint": {
+      "optional": true
+    },
+    "oxfmt": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@nx/devkit": "23.1.0",
+    "tslib": "^2.3.0"
+  },
+  "nx": {
+    "name": "nx-oxc",
+    "tags": ["npm:public", "type:plugin"],
+    "targets": {
+      "build": {
+        "executor": "@nx/js:tsc",
+        "outputs": ["{options.outputPath}"],
+        "options": {
+          "outputPath": "packages/nx-oxc/dist",
+          "main": "packages/nx-oxc/src/index.ts",
+          "tsConfig": "packages/nx-oxc/tsconfig.lib.json",
+          "rootDir": "packages/nx-oxc/src",
+          "generatePackageJson": false,
+          "assets": [
+            {
+              "input": "./packages/nx-oxc/src",
+              "glob": "**/!(*.ts)",
+              "output": "."
+            },
+            {
+              "input": "./packages/nx-oxc/src",
+              "glob": "**/*.d.ts",
+              "output": "."
+            }
+          ]
+        }
+      }
+    }
+  }
+}

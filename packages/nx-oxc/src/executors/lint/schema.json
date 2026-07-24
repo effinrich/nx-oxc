@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "Oxlint executor",
+  "description": "Lint a project using oxlint (https://oxc.rs/docs/guide/usage/linter).",
+  "type": "object",
+  "properties": {
+    "projectRoot": {
+      "type": "string",
+      "description": "Project root relative to the workspace root. Defaults to the current project root."
+    },
+    "configFile": {
+      "type": "string",
+      "description": "Path to an oxlint configuration file relative to the workspace root. When omitted, the executor discovers a default config in the project root."
+    },
+    "fix": {
+      "type": "boolean",
+      "description": "Fix as many issues as possible. Only unfixed issues are reported.",
+      "default": false
+    },
+    "fixSuggestions": {
+      "type": "boolean",
+      "description": "Apply auto-fixable suggestions. May change program behavior.",
+      "default": false
+    },
+    "fixDangerously": {
+      "type": "boolean",
+      "description": "Apply dangerous fixes and suggestions.",
+      "default": false
+    },
+    "format": {
+      "type": "string",
+      "description": "Use a specific output format.",
+      "enum": [
+        "checkstyle",
+        "default",
+        "github",
+        "gitlab",
+        "json",
+        "junit",
+        "stylish",
+        "unix"
+      ],
+      "default": "default"
+    },
+    "quiet": {
+      "type": "boolean",
+      "description": "Disable reporting on warnings; only errors are reported.",
+      "default": false
+    },
+    "maxWarnings": {
+      "type": "number",
+      "description": "Force a non-zero exit when the warning count exceeds this threshold.",
+      "minimum": 0
+    },
+    "deny": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Deny rules or categories (oxlint `-D`). Example: [\"correctness\", \"no-debugger\"]."
+    },
+    "warn": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Warn on rules or categories (oxlint `-W`)."
+    },
+    "allow": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Allow rules or categories (oxlint `-A`)."
+    },
+    "args": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Additional CLI arguments forwarded to oxlint (e.g. [\"--type-aware\", \"--react-plugin\"])."
+    }
+  },
+  "additionalProperties": false
+}

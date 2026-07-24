@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "NxOxcInit",
+  "title": "Initialize @nx-oxc/nx",
+  "description": "Install oxlint/oxfmt, scaffold configs, and register inference plugins in nx.json.",
+  "type": "object",
+  "properties": {
+    "oxlint": {
+      "type": "boolean",
+      "description": "Install oxlint and register `@nx-oxc/nx/oxlint` for inferred lint targets.",
+      "default": true
+    },
+    "oxfmt": {
+      "type": "boolean",
+      "description": "Install oxfmt and register `@nx-oxc/nx/oxfmt` for inferred format targets.",
+      "default": true
+    },
+    "createOxlintConfig": {
+      "type": "boolean",
+      "description": "Create a workspace-level `.oxlintrc.json` when one does not already exist.",
+      "default": true
+    },
+    "createOxfmtConfig": {
+      "type": "boolean",
+      "description": "Create a workspace-level `.oxfmtrc.json` when one does not already exist.",
+      "default": true
+    },
+    "lintTargetName": {
+      "type": "string",
+      "description": "Name of the inferred oxlint target.",
+      "default": "lint"
+    },
+    "formatTargetName": {
+      "type": "string",
+      "description": "Name of the inferred oxfmt format target.",
+      "default": "format"
+    },
+    "formatCheckTargetName": {
+      "type": "string",
+      "description": "Name of the inferred oxfmt format-check target.",
+      "default": "format-check"
+    },
+    "removeEslintPlugin": {
+      "type": "boolean",
+      "description": "Remove `@nx/eslint/plugin` from nx.json (does not uninstall ESLint packages).",
+      "default": false
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "description": "Skip formatting files after generation.",
+      "default": false
+    }
+  },
+  "additionalProperties": false
+}
