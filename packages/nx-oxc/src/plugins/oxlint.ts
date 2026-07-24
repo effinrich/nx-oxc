@@ -57,7 +57,7 @@ async function createNodesInternal(
 
   const absoluteProjectRoot = join(context.workspaceRoot, projectRoot);
   const configFileName = findOxlintConfigFileName(absoluteProjectRoot);
-  if (!configFileName || !findOxlintConfigFile(absoluteProjectRoot)) {
+  if (!configFileName) {
     return {};
   }
 
