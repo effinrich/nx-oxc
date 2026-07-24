@@ -96,23 +96,25 @@ export async function configurationGenerator(
       };
     }
 
-    targets[formatTargetName] = {
-      executor: '@nx-oxc/nx:format',
-      cache: true,
-      inputs: ['default', { externalDependencies: ['oxfmt'] }],
-      options: {
-        projectRoot,
-      },
-    };
+    if (enableOxfmt) {
+      targets[formatTargetName] = {
+        executor: '@nx-oxc/nx:format',
+        cache: true,
+        inputs: ['default', { externalDependencies: ['oxfmt'] }],
+        options: {
+          projectRoot,
+        },
+      };
 
-    targets[formatCheckTargetName] = {
-      executor: '@nx-oxc/nx:format-check',
-      cache: true,
-      inputs: ['default', { externalDependencies: ['oxfmt'] }],
-      options: {
-        projectRoot,
-      },
-    };
+      targets[formatCheckTargetName] = {
+        executor: '@nx-oxc/nx:format-check',
+        cache: true,
+        inputs: ['default', { externalDependencies: ['oxfmt'] }],
+        options: {
+          projectRoot,
+        },
+      };
+    }
 
     updateProjectConfiguration(tree, options.project, {
       ...project,
