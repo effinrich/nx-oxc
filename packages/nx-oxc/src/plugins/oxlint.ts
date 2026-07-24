@@ -8,7 +8,6 @@ import {
 } from '@nx/devkit';
 import { dirname, join } from 'node:path';
 import {
-  findOxlintConfigFile,
   findOxlintConfigFileName,
 } from '../utils/oxlint-config';
 
