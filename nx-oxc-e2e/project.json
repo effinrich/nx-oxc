@@ -7,8 +7,7 @@
   "targets": {
     "e2e": {
       "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}",
-        "{workspaceRoot}\\coverage\\nx-oxc-e2e"
+        "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "dependsOn": ["^build"],
       "options": {
