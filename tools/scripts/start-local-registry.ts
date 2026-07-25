@@ -6,13 +6,19 @@
 import { startLocalRegistry } from '@nx/js/plugins/jest/local-registry';
 import { releasePublish, releaseVersion } from 'nx/release';
 
+type StopLocalRegistry = () => void | Promise<void>;
+
+declare global {
+  var stopLocalRegistry: StopLocalRegistry | undefined;
+}
+
 export default async () => {
   // local registry target to run
   const localRegistryTarget = '@nx-oxc/source:local-registry';
   // storage folder for the local registry
   const storage = './tmp/local-registry/storage';
 
-  global.stopLocalRegistry = await startLocalRegistry({
+  globalThis.stopLocalRegistry = await startLocalRegistry({
     localRegistryTarget,
     storage,
     verbose: false,
@@ -25,11 +31,11 @@ export default async () => {
     gitTag: false,
     firstRelease: true,
     versionActionsOptionsOverrides: {
-      skipLockFileUpdate: true
-    }
+      skipLockFileUpdate: true,
+    },
   });
   await releasePublish({
     tag: 'e2e',
-    firstRelease: true
+    firstRelease: true,
   });
 };

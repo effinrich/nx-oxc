@@ -5,5 +5,7 @@ module.exports = {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../coverage/nx-oxc-e2e',"globalSetup": "..\\tools\\scripts\\start-local-registry.ts","globalTeardown": "..\\tools\\scripts\\stop-local-registry.ts"
+  coverageDirectory: '../coverage/nx-oxc-e2e',
+  globalSetup: '<rootDir>/../tools/scripts/start-local-registry.ts',
+  globalTeardown: '<rootDir>/../tools/scripts/stop-local-registry.ts'
 };

@@ -1,6 +1,8 @@
 import { execSync } from 'child_process';
 import { join, dirname } from 'path';
-import { mkdirSync, rmSync } from 'fs';
+import { mkdirSync, readFileSync, rmSync } from 'fs';
+
+const workspaceNxVersion = getWorkspaceNxVersion();
 
 describe('nx-oxc', () => {
   let projectDirectory: string;
@@ -55,7 +57,7 @@ function createTestProject() {
   });
 
   execSync(
-    `npx create-nx-workspace@latest ${projectName} --preset apps --nxCloud=skip --no-interactive`,
+    `npx create-nx-workspace@${workspaceNxVersion} ${projectName} --preset apps --nxCloud=skip --no-interactive`,
     {
       cwd: dirname(projectDirectory),
       stdio: 'inherit',
@@ -65,4 +67,25 @@ function createTestProject() {
   console.log(`Created test project in "${projectDirectory}"`);
 
   return projectDirectory;
+}
+
+function getWorkspaceNxVersion() {
+  const packageJson = JSON.parse(
+    readFileSync(join(__dirname, '..', '..', 'package.json'), 'utf8')
+  ) as {
+    devDependencies?: { nx?: string };
+    dependencies?: { nx?: string };
+  };
+
+  const nxVersion = packageJson.devDependencies?.nx ?? packageJson.dependencies?.nx;
+  if (!nxVersion) {
+    throw new Error('Could not determine the workspace Nx version.');
+  }
+
+  const exactVersion = nxVersion.match(/\d+\.\d+\.\d+/)?.[0];
+  if (!exactVersion) {
+    throw new Error(`Unsupported Nx version specifier: ${nxVersion}`);
+  }
+
+  return exactVersion;
 }
