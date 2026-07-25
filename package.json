@@ -57,5 +57,10 @@
         }
       }
     }
+  },
+  "allowScripts": {
+    "@swc/core@1.15.46": true,
+    "nx@23.1.0": true,
+    "unrs-resolver@1.12.2": true
   }
 }
