@@ -1,6 +1,6 @@
 {
   "name": "@nx-oxc/nx",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Nx plugin for oxlint and oxfmt — fast linting and formatting with the Oxc toolchain.",
   "license": "MIT",
   "type": "commonjs",
