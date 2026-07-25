@@ -6,6 +6,7 @@ import {
   type TargetConfiguration,
 } from '@nx/devkit';
 import { dirname } from 'node:path';
+import { DEFAULT_OXFMT_CONFIG_FILENAMES } from '../utils/oxfmt-config';
 
 export interface OxfmtPluginOptions {
   /** Inferred format target name. Defaults to `format`. */
@@ -16,6 +17,9 @@ export interface OxfmtPluginOptions {
 
 const PROJECT_CONFIG_GLOB = '**/{package,project}.json';
 const PACKAGE_NAME = '@nx-oxc/nx';
+const OXFMT_CONFIG_INPUTS = DEFAULT_OXFMT_CONFIG_FILENAMES.flatMap(
+  (filename) => [`{workspaceRoot}/${filename}`, `{projectRoot}/${filename}`]
+);
 
 function normalizeOptions(options: OxfmtPluginOptions | undefined): {
   formatTargetName: string;
@@ -44,28 +48,19 @@ async function createNodesInternal(
   const baseOptions = {
     projectRoot,
   };
+  const inputs = ['default', ...OXFMT_CONFIG_INPUTS, { externalDependencies: ['oxfmt'] }];
 
   const formatTarget: TargetConfiguration = {
     executor: `${PACKAGE_NAME}:format`,
     cache: true,
-    inputs: [
-      'default',
-      '{workspaceRoot}/.oxfmtrc.json',
-      '{workspaceRoot}/.oxfmtrc.jsonc',
-      { externalDependencies: ['oxfmt'] },
-    ],
+    inputs,
     options: { ...baseOptions },
   };
 
   const formatCheckTarget: TargetConfiguration = {
     executor: `${PACKAGE_NAME}:format-check`,
     cache: true,
-    inputs: [
-      'default',
-      '{workspaceRoot}/.oxfmtrc.json',
-      '{workspaceRoot}/.oxfmtrc.jsonc',
-      { externalDependencies: ['oxfmt'] },
-    ],
+    inputs,
     options: { ...baseOptions },
   };
 

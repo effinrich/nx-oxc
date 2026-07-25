@@ -26,6 +26,36 @@ describe('oxfmt createNodes', () => {
     ).toBe('@nx-oxc/nx:format-check');
   });
 
+  it('includes workspace and project oxfmt config files in cache inputs', async () => {
+    const results = await create(
+      ['packages/demo/package.json'],
+      undefined,
+      context
+    );
+
+    const [, result] = results[0];
+    expect(
+      result.projects?.['packages/demo']?.targets?.['format']?.inputs
+    ).toEqual(
+      expect.arrayContaining([
+        '{workspaceRoot}/.oxfmtrc.json',
+        '{projectRoot}/.oxfmtrc.json',
+        '{workspaceRoot}/oxfmt.config.ts',
+        '{projectRoot}/oxfmt.config.ts',
+      ])
+    );
+    expect(
+      result.projects?.['packages/demo']?.targets?.['format-check']?.inputs
+    ).toEqual(
+      expect.arrayContaining([
+        '{workspaceRoot}/.oxfmtrc.json',
+        '{projectRoot}/.oxfmtrc.json',
+        '{workspaceRoot}/oxfmt.config.ts',
+        '{projectRoot}/oxfmt.config.ts',
+      ])
+    );
+  });
+
   it('skips the workspace root package.json', async () => {
     const results = await create(['package.json'], undefined, context);
     expect(results[0][1]).toEqual({});
