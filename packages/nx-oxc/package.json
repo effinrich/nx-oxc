@@ -1,6 +1,6 @@
 {
   "name": "@nx-oxc/nx",
-  "version": "0.0.1",
+  "version": "0.0.0-e2e",
   "description": "Nx plugin for oxlint and oxfmt — fast linting and formatting with the Oxc toolchain.",
   "license": "MIT",
   "type": "commonjs",
@@ -84,11 +84,16 @@
   },
   "nx": {
     "name": "nx-oxc",
-    "tags": ["npm:public", "type:plugin"],
+    "tags": [
+      "npm:public",
+      "type:plugin"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:tsc",
-        "outputs": ["{options.outputPath}"],
+        "outputs": [
+          "{options.outputPath}"
+        ],
         "options": {
           "outputPath": "packages/nx-oxc/dist",
           "main": "packages/nx-oxc/src/index.ts",

@@ -1,0 +1,7 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "name": "nx-oxc",
+    "projectType": "library",
+    "sourceRoot": "packages/nx-oxc/src",
+    "targets": {}
+  }
