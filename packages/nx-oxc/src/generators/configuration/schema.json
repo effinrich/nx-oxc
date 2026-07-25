@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "NxOxcConfiguration",
+  "title": "Configure oxlint/oxfmt for a project",
+  "description": "Add project-level oxlint/oxfmt configuration (and optionally explicit targets) to an existing Nx project.",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The project to configure.",
+      "x-prompt": "Which project should be configured?",
+      "x-dropdown": "projects",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "oxlint": {
+      "type": "boolean",
+      "description": "Create a project-level `.oxlintrc.json` when missing (enables inferred lint targets).",
+      "default": true
+    },
+    "oxfmt": {
+      "type": "boolean",
+      "description": "Create a project-level `.oxfmtrc.json` when missing.",
+      "default": false
+    },
+    "addTargets": {
+      "type": "boolean",
+      "description": "Add explicit executor targets to the project configuration instead of relying solely on inference.",
+      "default": false
+    },
+    "lintTargetName": {
+      "type": "string",
+      "description": "Lint target name when addTargets is true.",
+      "default": "lint"
+    },
+    "formatTargetName": {
+      "type": "string",
+      "description": "Format target name when addTargets is true.",
+      "default": "format"
+    },
+    "formatCheckTargetName": {
+      "type": "string",
+      "description": "Format-check target name when addTargets is true.",
+      "default": "format-check"
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "description": "Skip formatting files after generation.",
+      "default": false
+    }
+  },
+  "required": ["project"],
+  "additionalProperties": false
+}

@@ -1,0 +1,16 @@
+{
+  "generators": {
+    "init": {
+      "factory": "./dist/generators/init/init",
+      "schema": "./dist/generators/init/schema.json",
+      "description": "Initialize oxlint and oxfmt in the workspace",
+      "aliases": ["setup"]
+    },
+    "configuration": {
+      "factory": "./dist/generators/configuration/configuration",
+      "schema": "./dist/generators/configuration/schema.json",
+      "description": "Configure oxlint/oxfmt for a project",
+      "aliases": ["config"]
+    }
+  }
+}

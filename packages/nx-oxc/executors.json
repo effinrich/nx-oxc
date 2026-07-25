@@ -1,0 +1,19 @@
+{
+  "executors": {
+    "lint": {
+      "implementation": "./dist/executors/lint/lint",
+      "schema": "./dist/executors/lint/schema.json",
+      "description": "Lint a project with oxlint"
+    },
+    "format": {
+      "implementation": "./dist/executors/format/format",
+      "schema": "./dist/executors/format/schema.json",
+      "description": "Format a project with oxfmt"
+    },
+    "format-check": {
+      "implementation": "./dist/executors/format-check/format-check",
+      "schema": "./dist/executors/format-check/schema.json",
+      "description": "Check formatting with oxfmt --check"
+    }
+  }
+}
