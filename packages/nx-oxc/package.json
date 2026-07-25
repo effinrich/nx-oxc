@@ -1,11 +1,7 @@
 {
   "name": "@nx-oxc/nx",
-  "version": "0.2.0",
+  "version": "0.0.1",
   "description": "Nx plugin for oxlint and oxfmt — fast linting and formatting with the Oxc toolchain.",
-  "license": "MIT",
-  "type": "commonjs",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "keywords": [
     "nx",
     "nx-plugin",
@@ -15,6 +11,7 @@
     "linter",
     "formatter"
   ],
+  "homepage": "https://github.com/effinrich/nx-oxc/tree/master/packages/nx-oxc#readme",
   "bugs": {
     "url": "https://github.com/effinrich/nx-oxc/issues"
   },
@@ -23,10 +20,9 @@
     "url": "git+https://github.com/effinrich/nx-oxc.git",
     "directory": "packages/nx-oxc"
   },
-  "homepage": "https://github.com/effinrich/nx-oxc/tree/master/packages/nx-oxc#readme",
-  "publishConfig": {
-    "access": "public"
-  },
+  "license": "MIT",
+  "author": "Rich Tillman",
+  "type": "commonjs",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -54,6 +50,8 @@
       "default": "./dist/plugins/oxfmt.js"
     }
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "executors.json",
@@ -64,8 +62,13 @@
     "!**/*.spec.js",
     "!**/*.spec.d.ts"
   ],
-  "executors": "./executors.json",
-  "generators": "./generators.json",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@nx/devkit": "23.1.0",
+    "tslib": "^2.3.0"
+  },
   "peerDependencies": {
     "oxlint": ">=1.0.0",
     "oxfmt": ">=0.30.0"
@@ -78,10 +81,11 @@
       "optional": true
     }
   },
-  "dependencies": {
-    "@nx/devkit": "23.1.0",
-    "tslib": "^2.3.0"
+  "publishConfig": {
+    "access": "public"
   },
+  "executors": "./executors.json",
+  "generators": "./generators.json",
   "nx": {
     "name": "nx-oxc",
     "tags": [
