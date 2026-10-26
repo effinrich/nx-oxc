@@ -13,7 +13,7 @@
     "@nx/eslint": "23.3.0",
     "@nx/eslint-plugin": "23.3.0",
     "@nx/jest": "23.3.0",
-    "@nx/js": "23.3.0",
+    "@nx/js": "24.0.0",
     "@nx/plugin": "^23.3.0",
     "@swc-node/register": "~1.12.1",
     "@swc/cli": "~0.8.1",
